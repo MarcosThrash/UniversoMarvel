@@ -1,0 +1,33 @@
+﻿@model IEnumerable<InformacoesMarvel.Models.ComicsVM>
+
+@{
+    ViewData["Title"] = "Lista de Títulos da MARVEL";   
+}
+
+<h1>Index</h1>
+
+<div class="row">
+    @foreach (var item in Model)
+    {
+    <div class="col-sm-12">
+        <div class="card mb-5 border-secondary-2">
+            <div class="row no-gutters">
+                <div class="col-md-4">
+                    <img src="@Html.DisplayFor(modelItem => item.ImagemPath)" class="card-img" alt="...">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h5 class="card-title">@Html.DisplayFor(modelItem => item.Titulo)</h5>
+                        <p class="card-text">@Html.DisplayFor(modelItem => item.Descricao)</p>
+                        <p class="card-text">@Html.DisplayFor(modelItem => item.Criadores)</p>
+                        <p class="card-text"><small class="text-muted">Número de páginas: @Html.DisplayFor(modelItem => item.QuantidadeDePaginas)</small></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    }
+</div>
+
+
+

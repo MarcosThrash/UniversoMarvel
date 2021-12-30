@@ -1,0 +1,107 @@
+﻿@{
+    ViewData["Title"] = "Lista de Títulos da MARVEL";
+    var total = Convert.ToInt32(ViewData["TotalPersonagens"].ToString());
+    var paginas = total / 72 + 1;
+}
+
+<h1>Personagens do Mundo MARVEL</h1>
+
+
+<div class="container">
+    <div class="row">
+        <p>Listados 72 de @total.</p>
+    </div>    
+</div>
+
+
+<div id="div-persongens">
+
+</div>
+
+
+<nav aria-label="...">
+    <ul class="pagination justify-content-center">
+        <li class="page-item previous" data-pag="1">
+            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+        </li>
+        @for (int i = 1; i < (paginas + 1); i++)
+        {
+            <li class="page-item">
+                <a class="page-link" href="#">@i</a>
+            </li>
+        }
+        <li class="page-item next">
+            <a class="page-link" href="#">Next</a>
+        </li>
+    </ul>
+</nav>
+
+
+@section Scripts{
+
+    <script>
+
+        var paginaAtual = 1;
+        var offSet = 1;
+
+        $(document).ready(function () {
+            CarregarPersonagens(offSet);
+            PreviousEnabledDisabled();
+        });
+
+        $(".page-item").click(function () {
+            var numeroDaPagina = $(this).find("a").text();
+            $(".page-item").removeClass("active");
+            $(this).addClass("active");
+
+            paginaAtual = numeroDaPagina;
+            offSet = (numeroDaPagina * 70 - 70) + 1;
+
+            PreviousEnabledDisabled();
+            NextEnabledDisabled();
+
+            CarregarPersonagens(offSet);
+        })
+
+        function CarregarPersonagens(offSet) {
+            $.ajax({
+                type: 'GET',
+                url: "/MarvelComics/Personagens",
+                data: {
+                    "offset": offSet
+                },
+                dataType: "html",
+                success: function (data) {
+
+                    $("#div-persongens").html("");
+                    $("#div-persongens").html(data);
+
+                },
+                error: function (err) {
+                    //console.log(err)
+                    //alert(err.responseText);
+                    $("#div-persongens").html("");
+                    $("#div-persongens").html(err.responseText);
+                }
+            })
+        }
+
+        function PreviousEnabledDisabled() {
+            if (paginaAtual == 1) {
+                $(".previous").addClass("disabled");
+            } else {
+                $(".previous").removeClass("disabled");
+            }
+        }
+
+        function NextEnabledDisabled() {
+            if (paginaAtual == 23) {
+                $(".next").addClass("disabled");
+            } else {
+                $(".next").removeClass("disabled");
+            }
+        }
+
+    </script>
+
+}
