@@ -30,7 +30,7 @@ namespace InformacoesMarvel.Testes.ControllerTestes
             var result = controller.Personagens(QT_RETORNADA, 1);
 
             var objectResult = Assert.IsType<Task<IActionResult>>(result);
-            var model = Assert.IsAssignableFrom<List<ResponseResult<PersonagemVM>>>(objectResult.)
+            //var model = Assert.IsAssignableFrom<List<ResponseResult<PersonagemVM>>>(objectResult.)
 
         }
 
