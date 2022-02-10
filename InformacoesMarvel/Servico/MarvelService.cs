@@ -23,25 +23,44 @@ namespace InformacoesMarvel.Servico
 
         public async Task<ResponseResult<ComicsVM>> Comic(int id)
         {
-            var response = await _httpClient.GetAsync($"/v1/public/comics?{GerarAutenticacao(_settings)}");
+            var response = await _httpClient.GetAsync($"/v1/public/comics/{id}?{GerarAutenticacao(_settings)}");
 
             if (!TratarErrosResponse(response))
                 return new ResponseResult<ComicsVM>(await DeserializarObjetosResponse<ErroResponse>(response));
 
             var dados = await DeserializarObjetosResponse<Root>(response);
-            return new ResponseResult<ComicsVM>(CriarComicVM(dados));
+
+            var comic = new ResponseResult<ComicsVM>(CriarComicVM(dados));
+
+            var listaDePersonagens = await ComicsPersonagens(comic.Value.Id);
+
+            comic.Value.Personagens = listaDePersonagens.Values;
+
+            return comic;
         }
 
-        public async Task<ResponseResult<ComicsVM>> Comics()
+        public async Task<ResponseResult<ComicsVM>> Comics(int limit, int offset)
         {            
-            var response = await _httpClient.GetAsync($"/v1/public/comics?{GerarAutenticacao(_settings)}");
+            var response = await _httpClient.GetAsync($"/v1/public/comics{Paginacao(limit, offset)}{GerarAutenticacao(_settings)}");
 
             if (!TratarErrosResponse(response))
                 return new ResponseResult<ComicsVM>(await DeserializarObjetosResponse<ErroResponse>(response));
 
             var dados = await DeserializarObjetosResponse<Root>(response);
+
             return new ResponseResult<ComicsVM>(CriaListaComicsVM(dados));
-        }       
+        }
+
+        public async Task<ResponseResult<PersonagemVM>> ComicsPersonagens(int idComic)
+        {
+            var response = await _httpClient.GetAsync($"/v1/public/comics/{idComic}/characters?{GerarAutenticacao(_settings)}");
+
+            if (!TratarErrosResponse(response))
+                return new ResponseResult<PersonagemVM>(await DeserializarObjetosResponse<ErroResponse>(response));
+
+            var dados = await DeserializarObjetosResponse<Root>(response);
+            return new ResponseResult<PersonagemVM>(CriaListaPersonagemVM(dados));
+        }
 
         public async Task<ResponseResult<PersonagemVM>> Personagem(int id)
         {
@@ -54,7 +73,9 @@ namespace InformacoesMarvel.Servico
             
             var resultado = new ResponseResult<PersonagemVM>(CriarPersonagemVM(dados));
 
-            await PreencherComicsDoPersonagem(resultado.Value);
+            var listaDeComics = await PersonagensComics(resultado.Value.Id);
+
+            resultado.Value.Comics = listaDeComics.Values;
 
             return resultado;
         }
@@ -70,23 +91,24 @@ namespace InformacoesMarvel.Servico
             return new ResponseResult<PersonagemVM>(CriaListaPersonagemVM(dados));
         }
 
+        public async Task<ResponseResult<ComicsVM>> PersonagensComics(int idPersonagem)
+        {
+            var response = await _httpClient.GetAsync($"/v1/public/characters/{idPersonagem}/comics?{GerarAutenticacao(_settings)}");
+
+            if (!TratarErrosResponse(response))
+                return new ResponseResult<ComicsVM>(await DeserializarObjetosResponse<ErroResponse>(response));
+
+            var dados = await DeserializarObjetosResponse<Root>(response);
+
+            return new ResponseResult<ComicsVM>(CriaListaComicsVM(dados));
+        }
+
         public async Task<int> TotalPersonagens()
         {
             var response = await _httpClient.GetAsync($"/v1/public/characters{Paginacao(1, 1)}{GerarAutenticacao(_settings)}");
             var dados = await DeserializarObjetosResponse<Root>(response);
             return dados.Data.Total;
         }
-
-        private async Task PreencherComicsDoPersonagem(PersonagemVM personagem)
-        {
-            var comics = new List<ComicsVM>();
-            foreach (var comic in personagem.Comics)
-            {
-                var response = await _httpClient.GetAsync($"{comic.ResourceURI}?{GerarAutenticacao(_settings)}");
-                var dado = await DeserializarObjetosResponse<Root>(response);
-                comics.Add(CriarComicVM(dado));
-            }
-            personagem.Comics = comics;
-        }        
+         
     }
 }

@@ -1,33 +1,41 @@
 ﻿@model IEnumerable<InformacoesMarvel.Models.ComicsVM>
 
 @{
-    ViewData["Title"] = "Lista de Títulos da MARVEL";   
+    ViewData["Title"] = "Lista de Títulos da MARVEL";
 }
 
 <h1>Index</h1>
 
-<div class="row">
-    @foreach (var item in Model)
-    {
-    <div class="col-sm-12">
-        <div class="card mb-5 border-secondary-2">
-            <div class="row no-gutters">
-                <div class="col-md-4">
-                    <img src="@Html.DisplayFor(modelItem => item.ImagemPath)" class="card-img" alt="...">
-                </div>
-                <div class="col-md-8">
-                    <div class="card-body">
-                        <h5 class="card-title">@Html.DisplayFor(modelItem => item.Titulo)</h5>
-                        <p class="card-text">@Html.DisplayFor(modelItem => item.Descricao)</p>
-                        <p class="card-text">@Html.DisplayFor(modelItem => item.Criadores)</p>
-                        <p class="card-text"><small class="text-muted">Número de páginas: @Html.DisplayFor(modelItem => item.QuantidadeDePaginas)</small></p>
+
+@if (Model != null && Model.Any())
+{
+    <!-- Future navigation panel -->
+    <div class="holder"></div>
+
+    @*<div class="row mt-5">*@
+    <ul id="itemContainer" class="row">
+        @foreach (var item in Model)
+        {
+            <li>
+
+                <div class="col-sm-6 col-lg-3 mb-5">
+                    <div class="card border-secondary-2">
+                        <img src="@Html.DisplayFor(modelItem => item.ImagemPath)" class="img-revista-miniatura" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title text-wrap">@Html.DisplayFor(model => item.Titulo)</h5>
+                            <a asp-action="Comic" asp-route-id="@item.Id" class="btn btn-outline-secondary">More</a>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
-    }
-</div>
 
+            </li>
+        }
+    </ul>
+    @*</div>*@
 
+}
+else
+{
+    <h5 class="mt-5">Não foram econtrados registros para essa soclicitação!</h5>
+}
 

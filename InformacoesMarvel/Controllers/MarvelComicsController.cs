@@ -16,10 +16,18 @@ namespace InformacoesMarvel.Controllers
             _servicoMarvel = servicoMarvel;
         }
         
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int limit = 70, int offset = 1)
         {
-            var result = await _servicoMarvel.Comics();
-            return View(result);
+            var result = await _servicoMarvel.Comics(limit, offset);
+            VerificaErrosNoResponse(result.ErrosReponse);
+            return View(result.Values);
+        }
+
+        public async Task<IActionResult> Comic(int id)
+        {
+            var result = await _servicoMarvel.Comic(id);
+            VerificaErrosNoResponse(result.ErrosReponse);
+            return View(result.Value);
         }
 
         public async Task<IActionResult> IndexPersonagens()
@@ -32,19 +40,14 @@ namespace InformacoesMarvel.Controllers
         public async Task<IActionResult> Personagens(int limit=70, int offset=1)
         {
             var result = await _servicoMarvel.Personagens(limit, offset);
-            //ResponsePossuiErro(result);
-            //if (!ResponsePossuiErro(result))
-            //{
-            //    ViewData["Title"] = result.ErrosReponse.Code;
-            //    return Redirect("/Error");                
-            //}
+            VerificaErrosNoResponse(result.ErrosReponse);
             return PartialView("_partialGridPersonagens", result.Values);
         }
 
         public async Task<IActionResult> Personagem(int id)
         {
             var result = await _servicoMarvel.Personagem(id);
-            ResponsePossuiErro(result.ErrosReponse);
+            VerificaErrosNoResponse(result.ErrosReponse);
             return View(result.Value);
         }
     }

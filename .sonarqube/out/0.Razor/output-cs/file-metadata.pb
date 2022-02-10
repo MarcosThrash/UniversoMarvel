@@ -1,0 +1,15 @@
+|
+qC:\Users\Marcos\source\repos\UniversoMarvel\InformacoesMarvel\obj\Debug\net5.0\Razor\Views\Home\Index.cshtml.g.csutf-8~
+sC:\Users\Marcos\source\repos\UniversoMarvel\InformacoesMarvel\obj\Debug\net5.0\Razor\Views\Home\Privacy.cshtml.g.csutf-8Ñ
+yC:\Users\Marcos\source\repos\UniversoMarvel\InformacoesMarvel\obj\Debug\net5.0\Razor\Views\MarvelComics\Comic.cshtml.g.csutf-8Ñ
+yC:\Users\Marcos\source\repos\UniversoMarvel\InformacoesMarvel\obj\Debug\net5.0\Razor\Views\MarvelComics\Index.cshtml.g.csutf-8ê
+ÑC:\Users\Marcos\source\repos\UniversoMarvel\InformacoesMarvel\obj\Debug\net5.0\Razor\Views\MarvelComics\IndexPersonagens.cshtml.g.csutf-8â
+~C:\Users\Marcos\source\repos\UniversoMarvel\InformacoesMarvel\obj\Debug\net5.0\Razor\Views\MarvelComics\Personagem.cshtml.g.csutf-8ó
+ãC:\Users\Marcos\source\repos\UniversoMarvel\InformacoesMarvel\obj\Debug\net5.0\Razor\Views\MarvelComics\_partialGridPersonagens.cshtml.g.csutf-8î
+àC:\Users\Marcos\source\repos\UniversoMarvel\InformacoesMarvel\obj\Debug\net5.0\Razor\Views\Shared\Components\Summary\Default.cshtml.g.csutf-8~
+sC:\Users\Marcos\source\repos\UniversoMarvel\InformacoesMarvel\obj\Debug\net5.0\Razor\Views\Shared\Error.cshtml.g.csutf-8Ä
+uC:\Users\Marcos\source\repos\UniversoMarvel\InformacoesMarvel\obj\Debug\net5.0\Razor\Views\Shared\_Layout.cshtml.g.csutf-8ì
+áC:\Users\Marcos\source\repos\UniversoMarvel\InformacoesMarvel\obj\Debug\net5.0\Razor\Views\Shared\_ValidationScriptsPartial.cshtml.g.csutf-8~
+sC:\Users\Marcos\source\repos\UniversoMarvel\InformacoesMarvel\obj\Debug\net5.0\Razor\Views\_ViewImports.cshtml.g.csutf-8|
+qC:\Users\Marcos\source\repos\UniversoMarvel\InformacoesMarvel\obj\Debug\net5.0\Razor\Views\_ViewStart.cshtml.g.csutf-8Ü
+{C:\Users\Marcos\source\repos\UniversoMarvel\InformacoesMarvel\obj\Debug\net5.0\InformacoesMarvel.RazorTargetAssemblyInfo.csutf-8

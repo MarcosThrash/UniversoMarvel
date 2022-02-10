@@ -11,7 +11,7 @@ namespace InformacoesMarvel.Controllers
     public class MainController : Controller
     {
         //Erros de Response exibidos através de ModelState
-        protected bool ResponsePossuiErro(ErroResponse erro)
+        protected bool VerificaErrosNoResponse(ErroResponse erro)
         {
             if (erro != null)
             {

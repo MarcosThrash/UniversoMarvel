@@ -3,11 +3,22 @@
 
 // Write your JavaScript code.
 
+$(function () {
 
-$(".abrirModal").click(function () {
-    var url = $(this).find("img").attr("src");
-    $(".modal-body img").attr("src", url);
-    //$(".modal-body").html("<img src='"+url+"'/>")
-    $("#exampleModal").modal("show");
+    $("div.holder").jPages({
+        containerID: "itemContainer",
+        perPage: 45,
+        first: false,
+        //previous: "span.arrowPrev",
+        //next: "span.arrowNext",
+        last: false,
+
+        callback: function (pages, items) {
+            //$("#legend1").html("Page " + pages.current + " of " + pages.count);
+            //$("#legend2").html(items.range.start + " - " + items.range.end + " of " + items.count);
+            alert("offset = " + items.range.end);
+        }
+
+    });
+
 });
-

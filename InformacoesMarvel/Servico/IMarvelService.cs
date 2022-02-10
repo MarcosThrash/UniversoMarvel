@@ -9,10 +9,14 @@ namespace InformacoesMarvel.Servico
 {
     public interface IMarvelService
     {
-        Task<ResponseResult<ComicsVM>> Comics();
         Task<ResponseResult<ComicsVM>> Comic(int id);
-        Task<ResponseResult<PersonagemVM>> Personagens(int limit, int offset);        
+        Task<ResponseResult<ComicsVM>> Comics(int limit, int offset);
+        Task<ResponseResult<PersonagemVM>> ComicsPersonagens(int idComic);
+
         Task<ResponseResult<PersonagemVM>> Personagem(int id);
+        Task<ResponseResult<PersonagemVM>> Personagens(int limit, int offset);
+        Task<ResponseResult<ComicsVM>> PersonagensComics(int idPersonagem);
+
         Task<int> TotalPersonagens();
     }
 }

@@ -1,0 +1,83 @@
+{
+  "$schema": "http://json.schemastore.org/sarif-1.0.0",
+  "version": "1.0.0",
+  "runs": [
+    {
+      "tool": {
+        "name": "Compilador do Microsoft (R) Visual C#",
+        "version": "3.11.0.0",
+        "fileVersion": "3.11.0-4.21451.6 (0b1a27fd)",
+        "semanticVersion": "3.11.0",
+        "language": "pt-BR"
+      },
+      "results": [
+        {
+          "ruleId": "CS1001",
+          "level": "error",
+          "message": "Identificador esperado",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/Marcos/source/repos/UniversoMarvel/Testes/InformacoesMarvel.Testes/ControllerTestes/ControllerMarvelTestes.cs",
+                "region": {
+                  "startLine": 33,
+                  "startColumn": 98,
+                  "endLine": 33,
+                  "endColumn": 99
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CS1002",
+          "level": "error",
+          "message": "; esperado",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/Marcos/source/repos/UniversoMarvel/Testes/InformacoesMarvel.Testes/ControllerTestes/ControllerMarvelTestes.cs",
+                "region": {
+                  "startLine": 33,
+                  "startColumn": 99,
+                  "endLine": 33,
+                  "endColumn": 99
+                }
+              }
+            }
+          ]
+        }
+      ],
+      "rules": {
+        "CS1001": {
+          "id": "CS1001",
+          "defaultLevel": "error",
+          "helpUri": "https://msdn.microsoft.com/query/roslyn.query?appId=roslyn&k=k(CS1001)",
+          "properties": {
+            "category": "Compiler",
+            "isEnabledByDefault": true,
+            "tags": [
+              "Compiler",
+              "Telemetry",
+              "NotConfigurable"
+            ]
+          }
+        },
+        "CS1002": {
+          "id": "CS1002",
+          "defaultLevel": "error",
+          "helpUri": "https://msdn.microsoft.com/query/roslyn.query?appId=roslyn&k=k(CS1002)",
+          "properties": {
+            "category": "Compiler",
+            "isEnabledByDefault": true,
+            "tags": [
+              "Compiler",
+              "Telemetry",
+              "NotConfigurable"
+            ]
+          }
+        }
+      }
+    }
+  ]
+}

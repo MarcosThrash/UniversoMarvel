@@ -41,7 +41,6 @@ namespace InformacoesMarvel.Servico
                         Id = item.Id,
                         Titulo = item.Title,
                         Criadores = item.Creators.Items.Select(c => $"{c.Name}, ").ToList(),
-                        Personagens = item.Characters.Items.Select(c => $"{c.Name}, ").ToList(),
                         ImagemPath = $"{item.Thumbnail.Path}.{item.Thumbnail.Extension}",
                         QuantidadeDePaginas = item.PageCount,
                         Descricao = item.TextObjects.Select(t => $"{t.Text}. ").ToList()
@@ -59,7 +58,6 @@ namespace InformacoesMarvel.Servico
                 comicsVm.Id = item.Id;
                 comicsVm.Titulo = item.Title;
                 comicsVm.Criadores = item.Creators.Items.Select(c => $"{c.Name}, ").ToList();
-                comicsVm.Personagens = item.Characters.Items.Select(c => $"{c.Name}, ").ToList();
                 comicsVm.ImagemPath = $"{item.Thumbnail.Path}.{item.Thumbnail.Extension}";
                 comicsVm.QuantidadeDePaginas = item.PageCount;
                 comicsVm.Descricao = item.TextObjects.Select(t => $"{t.Text}. ").ToList();                                  
